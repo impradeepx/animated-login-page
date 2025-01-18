@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chemistry Animation with Login</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #001f3f;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        .container h2 {
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .container input[type="submit"] {
+            background: #ff4136;
+            color: white;
+            cursor: pointer;
+        }
+
+        .container input[type="submit"]:hover {
+            background: #ff5733;
+        }
+
+        .molecule-container {
+            margin-top: 40px;
+        }
+
+        .molecule {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto;
+        }
+
+        .atom {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: #ff4136;
+            border-radius: 50%;
+            animation: orbit 5s linear infinite;
+        }
+
+        .atom:nth-child(2) {
+            background-color: #2ecc40;
+            width: 40px;
+            height: 40px;
+            animation-duration: 4s;
+        }
+
+        .atom:nth-child(3) {
+            background-color: #0074d9;
+            width: 30px;
+            height: 30px;
+            animation-duration: 3s;
+        }
+
+        @keyframes orbit {
+            0% {
+                transform: rotate(0deg) translateX(75px) rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg) translateX(75px) rotate(-360deg);
+            }
+        }
+
+        .nucleus {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 30px;
+            height: 30px;
+            background-color: #ffdc00;
+            border-radius: 50%;
+            box-shadow: 0 0 15px #ffdc00;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <input type="email" id="email" placeholder="Enter Gmail" required>
+            <input type="password" id="password" placeholder="Enter Password" required>
+            <input type="submit" value="Submit">
+        </form>
+
+        <div class="molecule-container">
+            <div class="molecule">
+                <div class="nucleus"></div>
+                <div class="atom" style="animation-delay: 0s;"></div>
+                <div class="atom" style="animation-delay: 1.5s;"></div>
+                <div class="atom" style="animation-delay: 3s;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('loginForm');
+        form.addEventListener('submit', (event) => {
+            event.preventDefault(); // Prevent default form submission
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            console.log('Email:', email);
+            console.log('Password:', password);
+
+            // Here you would add the OAuth 2.0 logic or an API call
+            alert('Login functionality is under development!');
+        });
+    </script>
+</body>
+</html>
