@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rocket Animation with Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    background: #c39d9d;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #333;
+    z-index: 1;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    background: #444;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+input {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 10px;
+    background-color: #008CBA;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #005f73;
+}
+
+.animation-container {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.rocket, .airplane, .ship {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: transparent;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+}
+
+.rocket {
+    width: 120px;
+    height: 180px;
+    background: linear-gradient(to bottom, #ff3e00, #ff9f00);
+    clip-path: polygon(50% 0%, 75% 40%, 75% 60%, 50% 100%, 25% 60%, 25% 40%);
+    top: 50%;
+    left: -150px;
+    animation: rocketAnimation 8s ease-in-out infinite;
+}
+
+.airplane {
+    width: 150px;
+    height: 70px;
+    background: lightblue;
+    clip-path: polygon(0% 50%, 15% 20%, 35% 20%, 50% 0%, 65% 0%, 85% 20%, 100% 50%, 85% 80%, 65% 100%, 50% 100%, 35% 80%, 15% 80%);
+    top: 15%;
+    left: 10%;
+    animation: airplaneAnimation 10s ease-in-out infinite;
+}
+
+.ship {
+    width: 200px;
+    height: 80px;
+    background: #404040;
+    border-radius: 20px;
+    top: 80%;
+    left: -250px;
+    animation: shipAnimation 12s ease-in-out infinite;
+}
+
+.space-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://www.nasa.gov/sites/default/files/thumbnails/nasa-logo-web-rgb.png') no-repeat center center;
+    background-size: cover;
+    animation: spaceAnimation 30s linear infinite;
+    z-index: -1;
+}
+
+@keyframes rocketAnimation {
+    0% { top: 50%; left: -150px; transform: rotate(0deg); }
+    50% { top: 10%; left: 60%; transform: rotate(15deg); }
+    100% { top: 50%; left: 100%; transform: rotate(0deg); }
+}
+
+@keyframes airplaneAnimation {
+    0% { top: 15%; left: 10%; }
+    50% { top: 30%; left: 50%; }
+    100% { top: 15%; left: 90%; }
+}
+
+@keyframes shipAnimation {
+    0% { top: 80%; left: -250px; }
+    50% { top: 60%; left: 50%; }
+    100% { top: 80%; left: 100%; }
+}
+
+@keyframes spaceAnimation {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
+}
+
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <div class="animation-container" style="display:none;">
+        <div class="rocket" id="rocket"></div>
+        <div class="airplane" id="airplane"></div>
+        <div class="ship" id="ship"></div>
+        <div class="space-background"></div>
+    </div>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+
+    if(username === "user" && password === "pass") {
+        // Hide login and show animation
+        document.querySelector(".login-container").style.display = "none";
+        document.querySelector(".animation-container").style.display = "block";
+    } else {
+        alert("Incorrect Username or Password");
+    }
+});
+
+    </script>
+</body>
+</html>
